@@ -15,5 +15,14 @@ function displayFruitNav(fruits)
         fruitItem.alt = fruit.name;
 
         fruitNav.append(fruitItem);
+
+        // fruitItem.addEventListener('click',()=>{
+            
+        //     const imgdetails = document.querySelector('#details')
+        //     imgdisplay.src = 
+            
+        // })
     });
+
+    
 }

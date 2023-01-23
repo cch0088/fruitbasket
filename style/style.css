@@ -1,0 +1,14 @@
+#navigation {
+    width: 35%;
+    overflow-y: auto;
+}
+
+#navigation img {
+    height: 33%;
+    width: 33%;
+    cursor: pointer;
+}
+
+#details {
+    width: 50%;
+}
