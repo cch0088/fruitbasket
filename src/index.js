@@ -10,7 +10,7 @@ function displayFruitNav(fruits)
     const fruitNav = document.querySelector("#navigation");
 
     fruits.forEach(fruit => {
-        const fruitItem = document.createElement("span");
+        const fruitItem = document.createElement("p");
         fruitItem.textContent = fruit.name;
 
         fruitNav.append(fruitItem);
