@@ -10,8 +10,9 @@ function displayFruitNav(fruits)
     const fruitNav = document.querySelector("#navigation");
 
     fruits.forEach(fruit => {
-        const fruitItem = document.createElement("p");
-        fruitItem.textContent = fruit.name;
+        const fruitItem = document.createElement("img");
+        fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png"
+        fruitItem.alt = fruit.name;
 
         fruitNav.append(fruitItem);
     });
