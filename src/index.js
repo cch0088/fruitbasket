@@ -64,7 +64,6 @@ function searchBox(fruits)
     });
 
     const filterFormBox = document.querySelector("#searchbox.hidden");
-
     const filterForm = document.createElement("form");
 
     const optName = document.createElement("input");
