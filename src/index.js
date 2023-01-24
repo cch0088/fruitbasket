@@ -14,7 +14,7 @@ function displayFruitNav(fruits, filter)
     const fruitNav = document.querySelector("#navigation");
 
     fruits.forEach(fruit => {
-        if (fruit.name.toLowerCase().startsWith(filter) || filter === undefined)
+        if (fruit.name.toLowerCase().match(filter) || filter === undefined)
         {
             const fruitItem = document.createElement("img");
             fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
@@ -58,8 +58,23 @@ function searchBox(fruits)
     const searchInput = document.createElement("input");
     searchBox.append(searchInput);
 
-    searchInput.addEventListener("change", (x) => {
+    searchInput.addEventListener("input", (x) => {
         fruitNav.textContent = "";
-        displayFruitNav(fruits, x.target.value);
+        displayFruitNav(fruits, x.target.value.toLowerCase());
     });
+
+    const filterFormBox = document.querySelector("#searchbox.hidden");
+
+    const filterForm = document.createElement("form");
+
+    const optName = document.createElement("input");
+    optName.setAttribute("type", "radio");
+    optName.setAttribute("id", "byName");
+
+    const txtName = document.createTextNode("Default sort");
+
+    filterForm.append(optName, txtName);
+
+    filterFormBox.append(filterForm);
+    
 }
