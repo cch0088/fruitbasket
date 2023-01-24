@@ -1,6 +1,7 @@
 #navigation {
     width: 35%;
-    overflow-y: auto;
+    float: left;
+    height: auto;
 }
 
 #navigation img {
@@ -10,5 +11,14 @@
 }
 
 #details {
+    float: right;
+    height: auto;
+}
+
+
+#details img {
+    margin-right: auto;
+    position: relative;
     width: 50%;
+    height: 50%;
 }
