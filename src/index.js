@@ -19,6 +19,7 @@ function displayFruitNav(fruits, filter)
             const fruitItem = document.createElement("img");
             fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
             fruitItem.alt = fruit.name;
+            fruitItem.className = "fruit";
 
             fruitNav.append(fruitItem);
 
