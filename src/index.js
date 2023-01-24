@@ -5,22 +5,26 @@ document.addEventListener("DOMContentLoaded", (e) => {
     .then((data) => {
         displayFruitNav(data);
         displayFruitDetails(data[0]);
+        searchBox(data);
     });
 });
 
-function displayFruitNav(fruits)
+function displayFruitNav(fruits, filter)
 {
     const fruitNav = document.querySelector("#navigation");
 
     fruits.forEach(fruit => {
-        const fruitItem = document.createElement("img");
-        fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
-        fruitItem.alt = fruit.name;
+        if (fruit.name.toLowerCase().startsWith(filter) || filter === undefined)
+        {
+            const fruitItem = document.createElement("img");
+            fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+            fruitItem.alt = fruit.name;
 
-        fruitNav.append(fruitItem);
+            fruitNav.append(fruitItem);
 
-        // Click for Display
-        fruitItem.addEventListener('click', (e) => displayFruitDetails(fruit));
+            // Click for Display
+            fruitItem.addEventListener('click', (e) => displayFruitDetails(fruit));
+        }
     });
 }
 
@@ -40,5 +44,21 @@ function displayFruitDetails(fruit)
         let ptxtcontent = document.querySelectorAll('p')[i];
         ptxtcontent.textContent = `${key.toUpperCase()}: ${value}g`
         i += 1;
+    });
+}
+
+function searchBox(fruits)
+{
+    const fruitNav = document.querySelector("#navigation");
+
+    const searchBox = document.querySelector("#searchbox");
+    searchBox.textContent = "Find: ";
+
+    const searchInput = document.createElement("input");
+    searchBox.append(searchInput);
+
+    searchInput.addEventListener("change", (x) => {
+        fruitNav.textContent = "";
+        displayFruitNav(fruits, x.target.value);
     });
 }
