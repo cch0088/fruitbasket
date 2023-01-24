@@ -5,10 +5,10 @@ body {
 #title-banner {
     text-align: center;
     background: url("../banner.png");
-    font-size: 40px;
+    font-size: 15px;
     background-repeat: repeat;
     margin: 0 auto;
-    padding: 30px;
+    padding: 5px;
 }
 
 #navigation {
