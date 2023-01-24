@@ -1,8 +1,8 @@
-body{
+body {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#title-banner{
+#title-banner {
     text-align: center;
     background: url("../banner.png");
     font-size: 40px;
@@ -14,9 +14,26 @@ body{
 #navigation {
     width: 35%;
     float: left;
-    overflow-y: scroll;
-    height: 450px;
+    overflow: scroll;
+    height: 400px;
+}
 
+#navigation::-webkit-scrollbar{
+    display:flow-root;
+    cursor: pointer;
+    width: 5px;
+}
+
+#navigation::-webkit-scrollbar-track {
+    background: transparent;
+    cursor: pointer;
+}
+    
+#navigation::-webkit-scrollbar-thumb {
+    background-color: gray;
+    cursor: pointer;
+    border-right: none;
+    border-left: none;
 }
 
 .fruit:hover{
@@ -26,19 +43,38 @@ body{
 #navigation img {
     height: 33%;
     width: 33%;
-    cursor: pointer;
+    cursor: pointer;      
 }
 
 #details {
+    justify-content: center;
+    align-self: center;
     float: right;
     height: auto;
-}   
+    border-style: solid;
+    background-color: bisque;
+}
 
 #details img {
-    margin-right: auto;
+    width: 50%;
+    height: 50%;
+    display: block;
+    place-items: center;
+    margin: 0 auto;
+}
+
+#details h3 {   
     position: relative;
     width: 50%;
     height: 50%;
+    margin: auto;
+    text-align: center;
+
+}
+
+#details > p{
+    text-align: center;
+    margin: 5px 5px 5px 5px;
 }
 
 #searchbox{
@@ -46,4 +82,30 @@ body{
     height: 75px;
     margin-top: auto;
     margin-right: auto;
+}
+.footer {
+    margin-bottom: auto;
+    background-color: peru;
+    display: block;
+    min-height: 120px;
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer div {
+    margin: 3px 15px -5px 15px;
+    text-align: center;
+}
+
+.footer div:nth-child(2) {
+    text-align: center;
+}
+
+.footer img{
+    height: 40px;
+    width: 40px;
+
 }
