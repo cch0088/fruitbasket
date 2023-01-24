@@ -33,6 +33,10 @@ body {
     border-left: none;
 }
 
+.fruit:hover{
+    filter: brightness(0.5);
+}
+
 #navigation img {
     height: 33%;
     width: 33%;
