@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", (e) => {
-    // fetch data downloaded from https://fruityvice.com/api/fruit/all
+    // Fetch data downloaded from https://fruityvice.com/api/fruit/all
     fetch("http://localhost:3000/fruits")
     .then((resp) => resp.json())
-    .then((data) => displayFruitNav(data))
+    .then((data) => {
+        displayFruitNav(data);
+        displayFruitDetails(data[0]);
+    });
 });
 
 function displayFruitNav(fruits)
@@ -11,28 +14,31 @@ function displayFruitNav(fruits)
 
     fruits.forEach(fruit => {
         const fruitItem = document.createElement("img");
-        fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png"
+        fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
         fruitItem.alt = fruit.name;
 
         fruitNav.append(fruitItem);
 
-        /* Click for Display */
-        fruitItem.addEventListener('click',()=>{
-            console.log(fruit.nutritions)
-            const imgDetails = document.querySelector('#imgDetails') 
-            imgDetails.src = fruitItem.src
-            
-            document.querySelector('h3').textContent = fruit.name
+        // Click for Display
+        fruitItem.addEventListener('click', (e) => displayFruitDetails(fruit));
+    });
+}
 
-            /* Nutrition Content */
-            Nutrition_content = fruit.nutritions
-            let i=0;
-            Object.entries(Nutrition_content).forEach(([key,value]) => {
-                let ptxtcontent = document.querySelectorAll('p')[i]
-                ptxtcontent.textContent = `${key.toUpperCase()}: ${value}g`
-                console.log(`${key} and ${value}`)
-                i++
-            }) 
-        })
+function displayFruitDetails(fruit)
+{
+    const contentList = fruit.nutritions;
+
+    const imgDetails = document.querySelector('#imgDetails');
+    imgDetails.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+    imgDetails.alt = fruit.name;
+    
+    document.querySelector('h3').textContent = fruit.name;
+
+    // Nutrition Content
+    let i=0;
+    Object.entries(contentList).forEach(([key,value]) => {
+        let ptxtcontent = document.querySelectorAll('p')[i];
+        ptxtcontent.textContent = `${key.toUpperCase()}: ${value}g`
+        i += 1;
     });
 }
