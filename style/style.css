@@ -1,4 +1,15 @@
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
 
+#title-banner {
+    text-align: center;
+    background: url("../banner.png");
+    font-size: 40px;
+    background-repeat: repeat;
+    margin: 0 auto;
+    padding: 30px;
+}
 
 #navigation {
     width: 35%;
@@ -39,6 +50,7 @@
     justify-content: center;
     align-self: center;
     float: right;
+    height: auto;
     border-style: solid;
     background-color: bisque;
 }
