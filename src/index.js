@@ -42,7 +42,7 @@ function displayFruitDetails(fruit)
     let i=0;
     Object.entries(contentList).forEach(([key,value]) => {
         let ptxtcontent = document.querySelectorAll('p')[i];
-        ptxtcontent.textContent = `${key.toUpperCase()}: ${value}g`
+        ptxtcontent.textContent = `${key.toUpperCase()}: ${value}g`;
         i += 1;
     });
 }
