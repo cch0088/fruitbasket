@@ -16,13 +16,23 @@ function displayFruitNav(fruits)
 
         fruitNav.append(fruitItem);
 
-        // fruitItem.addEventListener('click',()=>{
+        /* Click for Display */
+        fruitItem.addEventListener('click',()=>{
+            console.log(fruit.nutritions)
+            const imgDetails = document.querySelector('#imgDetails') 
+            imgDetails.src = fruitItem.src
             
-        //     const imgdetails = document.querySelector('#details')
-        //     imgdisplay.src = 
-            
-        // })
-    });
+            document.querySelector('h3').textContent = fruit.name
 
-    
+            /* Nutrition Content */
+            Nutrition_content = fruit.nutritions
+            let i=0;
+            Object.entries(Nutrition_content).forEach(([key,value]) => {
+                let ptxtcontent = document.querySelectorAll('p')[i]
+                ptxtcontent.textContent = `${key.toUpperCase()}: ${value}g`
+                console.log(`${key} and ${value}`)
+                i++
+            }) 
+        })
+    });
 }

@@ -1,7 +1,9 @@
 #navigation {
     width: 35%;
     float: left;
-    height: auto;
+    overflow-y: scroll;
+    height: 450px;
+
 }
 
 #navigation img {
@@ -15,10 +17,16 @@
     height: auto;
 }
 
-
 #details img {
     margin-right: auto;
     position: relative;
     width: 50%;
     height: 50%;
+}
+
+#searchbox{
+    width: 35%;
+    height: 75px;
+    margin-top: auto;
+    margin-right: auto;
 }
