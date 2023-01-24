@@ -1,9 +1,36 @@
+.main {
+    max-width: 900px;
+    background-color: #fff;
+    margin: 0 auto;     
+}
+
+body {
+    min-height: 400%;
+}
+
 #navigation {
     width: 35%;
     float: left;
-    overflow-y: scroll;
-    height: 450px;
+    overflow: scroll;
+    height: 400px;
+}
 
+#navigation::-webkit-scrollbar{
+    display:flow-root;
+    cursor: pointer;
+    width: 5px;
+}
+
+#navigation::-webkit-scrollbar-track {
+    background: transparent;
+    cursor: pointer;
+}
+    
+#navigation::-webkit-scrollbar-thumb {
+    background-color: gray;
+    cursor: pointer;
+    border-right: none;
+    border-left: none;
 }
 
 #navigation img {
@@ -13,11 +40,22 @@
 }
 
 #details {
+    justify-content: center;
+    align-self: center;
     float: right;
-    height: auto;
+    
 }
 
+
+
 #details img {
+    margin-right: auto;
+    position: relative;
+    width: 50%;
+    height: 50%;
+}
+
+#details h3 {
     margin-right: auto;
     position: relative;
     width: 50%;
@@ -29,4 +67,30 @@
     height: 75px;
     margin-top: auto;
     margin-right: auto;
+}
+.footer {
+    margin-bottom: auto;
+    background-color: peru;
+    display: block;
+    min-height: 120px;
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer div {
+    margin: 3px 15px -5px 15px;
+    text-align: center;
+}
+
+.footer div:nth-child(2) {
+    text-align: center;
+}
+
+.footer img{
+    height: 40px;
+    width: 40px;
+
 }
