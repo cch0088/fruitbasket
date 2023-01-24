@@ -69,7 +69,7 @@ function searchBox(fruits)
 
 function sortForm(fruits)
 {
-    const filterFormBox = document.querySelector("#searchbox.hidden");
+    const filterFormBox = document.querySelector("#hiddensearchbox.hidden");
     const filterForm = document.createElement("form");
     const br0 = document.createElement("br");
     const br1 = document.createElement("br");
