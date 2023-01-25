@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     .then((data) => {
         displayFruitDetails(data[0]);
         displayFruitNav(data);
-        displayFilterForm();
+        displayFilterForm(data);
     });
 });
 
@@ -56,37 +56,31 @@ function sortObject(fruits, sortBy)
         case "byCarbs":
             fruits.sort((f1, f2) => (f1.nutritions.carbohydrates < f2.nutritions.carbohydrates) ? 1 
             : (f1.nutritions.carbohydrates > f2.nutritions.carbohydrates) ? -1 : 0);
-            searchBox(fruits);
             break;
         case "byProtein":
             fruits.sort((f1, f2) => (f1.nutritions.protein < f2.nutritions.protein) ? 1 
             : (f1.nutritions.protein > f2.nutritions.protein) ? -1 : 0);
-            searchBox(fruits);
             break;
         case "byFat":
             fruits.sort((f1, f2) => (f1.nutritions.fat < f2.nutritions.fat) ? 1 
             : (f1.nutritions.fat > f2.nutritions.fat) ? -1 : 0);
-            searchBox(fruits);
             break;
         case "byCalories":
             fruits.sort((f1, f2) => (f1.nutritions.calories < f2.nutritions.calories) ? 1 
             : (f1.nutritions.calories > f2.nutritions.calories) ? -1 : 0);
-            searchBox(fruits);
             break;
         case "bySugar":
             fruits.sort((f1, f2) => (f1.nutritions.sugar < f2.nutritions.sugar) ? 1 
             : (f1.nutritions.sugar > f2.nutritions.sugar) ? -1 : 0);
-            searchBox(fruits);
             break;
         default:
             fruits.sort((f1, f2) => (f1.name < f2.name) ? -1 
             : (f1.name > f2.name) ? 1 : 0);
-            searchBox(fruits);
             break;
     }
 }
 
-function displayFilterForm()
+function displayFilterForm(fruits)
 {
     // define search form
     const searchBox = document.querySelector("#searchbox");
@@ -109,7 +103,7 @@ function displayFilterForm()
     optName.setAttribute("name", "sortOrder");
     optName.setAttribute("value", "byName");
     optName.setAttribute("checked", "true");
-    const txtName = document.createTextNode("Default sort");
+    const txtName = document.createTextNode("Default sort (A-Z)");
 
     const optCarbs = document.createElement("input");
     optCarbs.setAttribute("type", "radio");
@@ -150,5 +144,18 @@ function displayFilterForm()
 
     filterFormBox.append(filterForm);
 
+    let sortValue = document.querySelector("input[name='sortOrder']:checked").value;
+    let searchValue = searchInput.value;
 
+    filterForm.addEventListener("click", (e) => {
+        sortValue = document.querySelector("input[name='sortOrder']:checked").value;
+        sortObject(fruits, sortValue);
+        displayFruitNav(fruits, searchValue);
+    });
+
+    searchInput.addEventListener("input", (x) => {
+        sortObject(fruits, sortValue);
+        searchValue = x.target.value.toLowerCase();
+        displayFruitNav(fruits, searchValue);
+    });
 }
