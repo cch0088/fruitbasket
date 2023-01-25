@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
     .then((resp) => resp.json())
     .then((data) => {
         displayFruitDetails(data[0]);
-        sortObject(data);
-        sortForm(data);
+        displayFruitNav(data);
+        displayFilterForm(data);
     });
 });
 
@@ -25,65 +25,6 @@ function displayFruitDetails(fruit)
         let ptxtcontent = document.querySelectorAll('p')[i];
         ptxtcontent.textContent = `${key.toUpperCase()}: ${value}g`;
         i += 1;
-    });
-}
-
-function sortObject(fruits, sortBy)
-{
-    switch (sortBy)
-    {
-        case "byCarbs":
-            fruits.sort((f1, f2) => (f1.nutritions.carbohydrates < f2.nutritions.carbohydrates) ? 1 
-            : (f1.nutritions.carbohydrates > f2.nutritions.carbohydrates) ? -1 : 0);
-            searchBox(fruits);
-            break;
-        case "byProtein":
-            fruits.sort((f1, f2) => (f1.nutritions.protein < f2.nutritions.protein) ? 1 
-            : (f1.nutritions.protein > f2.nutritions.protein) ? -1 : 0);
-            searchBox(fruits);
-            break;
-        case "byFat":
-            fruits.sort((f1, f2) => (f1.nutritions.fat < f2.nutritions.fat) ? 1 
-            : (f1.nutritions.fat > f2.nutritions.fat) ? -1 : 0);
-            searchBox(fruits);
-            break;
-        case "byCalories":
-            fruits.sort((f1, f2) => (f1.nutritions.calories < f2.nutritions.calories) ? 1 
-            : (f1.nutritions.calories > f2.nutritions.calories) ? -1 : 0);
-            searchBox(fruits);
-            break;
-        case "bySugar":
-            fruits.sort((f1, f2) => (f1.nutritions.sugar < f2.nutritions.sugar) ? 1 
-            : (f1.nutritions.sugar > f2.nutritions.sugar) ? -1 : 0);
-            searchBox(fruits);
-            break;
-        default:
-            fruits.sort((f1, f2) => (f1.name < f2.name) ? -1 
-            : (f1.name > f2.name) ? 1 : 0);
-            searchBox(fruits);
-            break;
-    }
-}
-
-function searchBox(fruits)
-{
-    const searchBox = document.querySelector("#searchbox");
-    searchBox.textContent = "Find: ";
-
-    const searchInput = document.createElement("input");
-    searchBox.append(searchInput);
-
-    if (searchInput.value === "")
-    {
-        displayFruitNav(fruits);
-    }
-    else
-    {
-        displayFruitNav(fruits, searchInput.value.toLowerCase());
-    }
-
-    searchInput.addEventListener("input", (x) => {
-        displayFruitNav(fruits, x.target.value.toLowerCase());
     });
 }
 
@@ -108,8 +49,47 @@ function displayFruitNav(fruits, filter)
     });
 }
 
-function sortForm(fruits)
+function sortObject(fruits, sortBy)
 {
+    switch (sortBy)
+    {
+        case "byCarbs":
+            fruits.sort((f1, f2) => (f1.nutritions.carbohydrates < f2.nutritions.carbohydrates) ? 1 
+            : (f1.nutritions.carbohydrates > f2.nutritions.carbohydrates) ? -1 : 0);
+            break;
+        case "byProtein":
+            fruits.sort((f1, f2) => (f1.nutritions.protein < f2.nutritions.protein) ? 1 
+            : (f1.nutritions.protein > f2.nutritions.protein) ? -1 : 0);
+            break;
+        case "byFat":
+            fruits.sort((f1, f2) => (f1.nutritions.fat < f2.nutritions.fat) ? 1 
+            : (f1.nutritions.fat > f2.nutritions.fat) ? -1 : 0);
+            break;
+        case "byCalories":
+            fruits.sort((f1, f2) => (f1.nutritions.calories < f2.nutritions.calories) ? 1 
+            : (f1.nutritions.calories > f2.nutritions.calories) ? -1 : 0);
+            break;
+        case "bySugar":
+            fruits.sort((f1, f2) => (f1.nutritions.sugar < f2.nutritions.sugar) ? 1 
+            : (f1.nutritions.sugar > f2.nutritions.sugar) ? -1 : 0);
+            break;
+        default:
+            fruits.sort((f1, f2) => (f1.name < f2.name) ? -1 
+            : (f1.name > f2.name) ? 1 : 0);
+            break;
+    }
+}
+
+function displayFilterForm(fruits)
+{
+    // define search form
+    const searchBox = document.querySelector("#searchbox");
+    searchBox.textContent = "Find: ";
+
+    const searchInput = document.createElement("input");
+    searchBox.append(searchInput);
+
+    // define additional sorting form
     const filterFormBox = document.querySelector("#hiddensearchbox.hidden");
     const filterForm = document.createElement("form");
     const br0 = document.createElement("br");
@@ -123,7 +103,7 @@ function sortForm(fruits)
     optName.setAttribute("name", "sortOrder");
     optName.setAttribute("value", "byName");
     optName.setAttribute("checked", "true");
-    const txtName = document.createTextNode("Default sort");
+    const txtName = document.createTextNode("Default sort (A-Z)");
 
     const optCarbs = document.createElement("input");
     optCarbs.setAttribute("type", "radio");
@@ -164,8 +144,18 @@ function sortForm(fruits)
 
     filterFormBox.append(filterForm);
 
+    let sortValue = document.querySelector("input[name='sortOrder']:checked").value;
+    let searchValue = searchInput.value;
+
     filterForm.addEventListener("click", (e) => {
-        const selectedValue = document.querySelector("input[name='sortOrder']:checked").value;
-        sortObject(fruits, selectedValue);
+        sortValue = document.querySelector("input[name='sortOrder']:checked").value;
+        sortObject(fruits, sortValue);
+        displayFruitNav(fruits, searchValue);
+    });
+
+    searchInput.addEventListener("input", (x) => {
+        sortObject(fruits, sortValue);
+        searchValue = x.target.value.toLowerCase();
+        displayFruitNav(fruits, searchValue);
     });
 }
