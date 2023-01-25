@@ -1,18 +1,28 @@
 body {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url("../pexels-photo-349610.jpeg");
 }
 
 #title-banner {
     text-align: center;
     background: url("../banner.png");
-    font-size: 15px;
+    font-size: 50px;
+    font-weight: bold;
+    font-variant: small-caps;
+    font-style: italic;
     background-repeat: repeat;
     margin: 0 auto;
     padding: 5px;
+    border-radius: 20px;
+}
+
+#title-banner > span {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 #navigation {
-    width: 35%;
+    width: 30%;
     float: left;
     overflow: scroll;
     height: 400px;
@@ -21,7 +31,6 @@ body {
 #navigation::-webkit-scrollbar{
     display:flow-root;
     cursor: pointer;
-    width: 5px;
 }
 
 #navigation::-webkit-scrollbar-track {
@@ -41,54 +50,81 @@ body {
 }
 
 #navigation img {
-    height: 33%;
-    width: 33%;
-    cursor: pointer;      
+    height: 120px;
+    width: 120px;
+    cursor: pointer;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: white;
+    margin-right: 6px;
 }
 
 #details {
-    justify-content: center;
-    align-self: center;
-    float: right;
+    float: left;
     height: auto;
-    border-style: solid;
+    padding: 40px;
+    border-radius: 10px;
     background-color: bisque;
 }
 
-#details img {
-    width: 50%;
-    height: 50%;
-    display: block;
-    place-items: center;
-    margin: 0 auto;
-}
-
-#details h3 {   
-    position: relative;
-    width: 50%;
-    height: 50%;
-    margin: auto;
-    text-align: center;
-
-}
-
 #details > p{
-    text-align: center;
     margin: 5px 5px 5px 5px;
+}
+
+#fruit {
+    justify-content: center;
+    align-self: center;
+    float: left;
+    height: auto;
+    margin-left: 5em;
+    text-align: center;
+}
+
+#fruitName {
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+}
+
+#fruit img {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 85%;
 }
 
 #searchbox {
     width: 35%;
-    height: 75px;
-    margin-top: auto;
-    margin-right: auto;
+    height: 60px;
+}
+
+#searchbox > input {
+    margin-top: 1em;
+    border-radius: 10px;
+    border-color: black;
+    height: 30px;
+    width: 255px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#searchbox > button {
+    margin-left: 10px;
+    height: 30px;
+    width: 100px;
+    font-weight: bold;
 }
 
 #hiddensearchbox {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    background-color: white;
+    border-radius: 10px;
+    background-color: bisque;
+    box-shadow: 10px 10px 5px;
+    padding: 10px;
+    width: 360px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black
 }
 
 .hidden {
