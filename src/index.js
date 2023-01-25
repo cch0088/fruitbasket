@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
     .then((resp) => resp.json())
     .then((data) => {
         displayFruitDetails(data[0]);
-        sortObject(data);
-        sortForm(data);
+        displayFruitNav(data);
+        displayFilterForm();
     });
 });
 
@@ -25,6 +25,27 @@ function displayFruitDetails(fruit)
         let ptxtcontent = document.querySelectorAll('p')[i];
         ptxtcontent.textContent = `${key.toUpperCase()}: ${value}g`;
         i += 1;
+    });
+}
+
+function displayFruitNav(fruits, filter)
+{
+    const fruitNav = document.querySelector("#navigation");
+    fruitNav.textContent = "";
+
+    fruits.forEach(fruit => {
+        if (fruit.name.toLowerCase().match(filter) || filter === undefined)
+        {
+            const fruitItem = document.createElement("img");
+            fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+            fruitItem.alt = fruit.name;
+            fruitItem.className = "fruit";
+
+            fruitNav.append(fruitItem);
+
+            // Click for Display
+            fruitItem.addEventListener('click', (e) => displayFruitDetails(fruit));
+        }
     });
 }
 
@@ -65,51 +86,16 @@ function sortObject(fruits, sortBy)
     }
 }
 
-function searchBox(fruits)
+function displayFilterForm()
 {
+    // define search form
     const searchBox = document.querySelector("#searchbox");
     searchBox.textContent = "Find: ";
 
     const searchInput = document.createElement("input");
     searchBox.append(searchInput);
 
-    if (searchInput.value === "")
-    {
-        displayFruitNav(fruits);
-    }
-    else
-    {
-        displayFruitNav(fruits, searchInput.value.toLowerCase());
-    }
-
-    searchInput.addEventListener("input", (x) => {
-        displayFruitNav(fruits, x.target.value.toLowerCase());
-    });
-}
-
-function displayFruitNav(fruits, filter)
-{
-    const fruitNav = document.querySelector("#navigation");
-    fruitNav.textContent = "";
-
-    fruits.forEach(fruit => {
-        if (fruit.name.toLowerCase().match(filter) || filter === undefined)
-        {
-            const fruitItem = document.createElement("img");
-            fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
-            fruitItem.alt = fruit.name;
-            fruitItem.className = "fruit";
-
-            fruitNav.append(fruitItem);
-
-            // Click for Display
-            fruitItem.addEventListener('click', (e) => displayFruitDetails(fruit));
-        }
-    });
-}
-
-function sortForm(fruits)
-{
+    // define additional sorting form
     const filterFormBox = document.querySelector("#hiddensearchbox.hidden");
     const filterForm = document.createElement("form");
     const br0 = document.createElement("br");
@@ -164,8 +150,5 @@ function sortForm(fruits)
 
     filterFormBox.append(filterForm);
 
-    filterForm.addEventListener("click", (e) => {
-        const selectedValue = document.querySelector("input[name='sortOrder']:checked").value;
-        sortObject(fruits, selectedValue);
-    });
+
 }
