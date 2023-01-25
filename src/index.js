@@ -144,9 +144,11 @@ function displayFilterForm(fruits)
 
     filterFormBox.append(filterForm);
 
+    // define default values
     let sortValue = document.querySelector("input[name='sortOrder']:checked").value;
     let searchValue = searchInput.value;
 
+    // add event listeners
     filterForm.addEventListener("click", (e) => {
         sortValue = document.querySelector("input[name='sortOrder']:checked").value;
         sortObject(fruits, sortValue);
