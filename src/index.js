@@ -4,31 +4,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
     .then((resp) => resp.json())
     .then((data) => {
         displayFruitDetails(data[0]);
-        sortForm(data);
         sortObject(data);
+        sortForm(data);
     });
 });
-
-function displayFruitNav(fruits, filter)
-{
-    const fruitNav = document.querySelector("#navigation");
-    fruitNav.textContent = "";
-
-    fruits.forEach(fruit => {
-        if (fruit.name.toLowerCase().match(filter) || filter === undefined)
-        {
-            const fruitItem = document.createElement("img");
-            fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
-            fruitItem.alt = fruit.name;
-            fruitItem.className = "fruit";
-
-            fruitNav.append(fruitItem);
-
-            // Click for Display
-            fruitItem.addEventListener('click', (e) => displayFruitDetails(fruit));
-        }
-    });
-}
 
 function displayFruitDetails(fruit)
 {
@@ -49,6 +28,43 @@ function displayFruitDetails(fruit)
     });
 }
 
+function sortObject(fruits, sortBy)
+{
+    switch (sortBy)
+    {
+        case "byCarbs":
+            fruits.sort((f1, f2) => (f1.nutritions.carbohydrates < f2.nutritions.carbohydrates) ? 1 
+            : (f1.nutritions.carbohydrates > f2.nutritions.carbohydrates) ? -1 : 0);
+            searchBox(fruits);
+            break;
+        case "byProtein":
+            fruits.sort((f1, f2) => (f1.nutritions.protein < f2.nutritions.protein) ? 1 
+            : (f1.nutritions.protein > f2.nutritions.protein) ? -1 : 0);
+            searchBox(fruits);
+            break;
+        case "byFat":
+            fruits.sort((f1, f2) => (f1.nutritions.fat < f2.nutritions.fat) ? 1 
+            : (f1.nutritions.fat > f2.nutritions.fat) ? -1 : 0);
+            searchBox(fruits);
+            break;
+        case "byCalories":
+            fruits.sort((f1, f2) => (f1.nutritions.calories < f2.nutritions.calories) ? 1 
+            : (f1.nutritions.calories > f2.nutritions.calories) ? -1 : 0);
+            searchBox(fruits);
+            break;
+        case "bySugar":
+            fruits.sort((f1, f2) => (f1.nutritions.sugar < f2.nutritions.sugar) ? 1 
+            : (f1.nutritions.sugar > f2.nutritions.sugar) ? -1 : 0);
+            searchBox(fruits);
+            break;
+        default:
+            fruits.sort((f1, f2) => (f1.name < f2.name) ? -1 
+            : (f1.name > f2.name) ? 1 : 0);
+            searchBox(fruits);
+            break;
+    }
+}
+
 function searchBox(fruits)
 {
     const searchBox = document.querySelector("#searchbox");
@@ -61,9 +77,34 @@ function searchBox(fruits)
     {
         displayFruitNav(fruits);
     }
+    else
+    {
+        displayFruitNav(fruits, searchInput.value.toLowerCase());
+    }
 
     searchInput.addEventListener("input", (x) => {
         displayFruitNav(fruits, x.target.value.toLowerCase());
+    });
+}
+
+function displayFruitNav(fruits, filter)
+{
+    const fruitNav = document.querySelector("#navigation");
+    fruitNav.textContent = "";
+
+    fruits.forEach(fruit => {
+        if (fruit.name.toLowerCase().match(filter) || filter === undefined)
+        {
+            const fruitItem = document.createElement("img");
+            fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+            fruitItem.alt = fruit.name;
+            fruitItem.className = "fruit";
+
+            fruitNav.append(fruitItem);
+
+            // Click for Display
+            fruitItem.addEventListener('click', (e) => displayFruitDetails(fruit));
+        }
     });
 }
 
@@ -127,24 +168,4 @@ function sortForm(fruits)
         const selectedValue = document.querySelector("input[name='sortOrder']:checked").value;
         sortObject(fruits, selectedValue);
     });
-}
-
-function sortObject(fruits, sortBy)
-{
-    switch (sortBy)
-    {
-        case "byCarbs":
-            break;
-        case "byProtein":
-            break;
-        case "byFat":
-            break;
-        case "byCalories":
-            break;
-        case "bySugar":
-            break;
-        default:
-            searchBox(fruits);
-            break;
-    }
 }
