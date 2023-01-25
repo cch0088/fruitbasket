@@ -89,6 +89,10 @@ function displayFilterForm(fruits)
     const searchInput = document.createElement("input");
     searchBox.append(searchInput);
 
+    const moreOptions = document.createElement("button");
+    moreOptions.textContent = "Sort by...";
+    searchBox.append(moreOptions);
+
     // define additional sorting form
     const filterFormBox = document.querySelector("#hiddensearchbox.hidden");
     const filterForm = document.createElement("form");
@@ -97,6 +101,12 @@ function displayFilterForm(fruits)
     const br2 = document.createElement("br");
     const br3 = document.createElement("br");
     const br4 = document.createElement("br");
+
+    // event listener for exposing additional options
+    moreOptions.addEventListener("click", (e) =>
+    {
+        filterFormBox.classList.toggle("hidden");
+    });
 
     const optName = document.createElement("input");
     optName.setAttribute("type", "radio");
