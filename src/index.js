@@ -17,7 +17,7 @@ function displayFruitDetails(fruit)
     imgDetails.src = "assets/" + (fruit.name).toLowerCase() + ".png";
     imgDetails.alt = fruit.name;
     
-    document.querySelector('h3').textContent = fruit.name;
+    document.querySelector("#fruitName").textContent = fruit.name;
 
     // Nutrition Content
     let i=0;
@@ -84,9 +84,9 @@ function displayFilterForm(fruits)
 {
     // define search form
     const searchBox = document.querySelector("#searchbox");
-    searchBox.textContent = "Find: ";
 
     const searchInput = document.createElement("input");
+    searchInput.placeholder = "Find a fruit";
     searchBox.append(searchInput);
 
     const moreOptions = document.createElement("button");
