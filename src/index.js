@@ -22,8 +22,15 @@ function displayFruitDetails(fruit)
     // Nutrition Content
     let i=0;
     Object.entries(contentList).forEach(([key,value]) => {
-        let ptxtcontent = document.querySelectorAll('p')[i];
-        ptxtcontent.textContent = `${key.toUpperCase()}: ${value}g`;
+        let ptxtcontent = document.querySelectorAll("p")[i];
+        if (key !== "calories")
+        {
+            ptxtcontent.textContent = `${key.toUpperCase()}: ${value}g`;
+        }
+        else
+        {
+            ptxtcontent.textContent = `${key.toUpperCase()}: ${value}`;
+        }
         i += 1;
     });
 }
