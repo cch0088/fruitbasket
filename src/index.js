@@ -82,7 +82,7 @@ function displayAddFruitForm()
 
         const newFruit =
         {
-            "name": "addnew",
+            "name": e.target["fruit-name"].value,
             "nutritions": {
             "carbohydrates": e.target.carbs.value,
             "protein": e.target.protein.value,
