@@ -44,9 +44,27 @@ function displayFruitNav(fruits, filter)
             fruitNav.append(fruitItem);
 
             // Click for Display
-            fruitItem.addEventListener('click', (e) => displayFruitDetails(fruit));
+            fruitItem.addEventListener("click", (e) => displayFruitDetails(fruit));
         }
     });
+
+    // add new fruit button
+
+    const fruitItemAdd = document.createElement("img");
+    fruitItemAdd.src = "assets/addnew.png";
+    fruitItemAdd.alt = "Add new fruit";
+    fruitItemAdd.className = "fruit";
+    fruitNav.append(fruitItemAdd);
+
+    fruitItemAdd.addEventListener("click", (e) => {
+        displayAddFruitForm();
+    });
+
+}
+
+function displayAddFruitForm()
+{
+    
 }
 
 function sortObject(fruits, sortBy)
