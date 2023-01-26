@@ -170,4 +170,19 @@ function displayFilterForm(fruits)
         searchValue = x.target.value.toLowerCase();
         displayFruitNav(fruits, searchValue);
     });
+
+    let x1, x2, y1, y2;
+
+    filterFormBox.addEventListener("dragstart", (d) => {
+        x1 = d.clientX;
+        y1 = d.clientY;
+    });
+
+    filterFormBox.addEventListener("dragend", (d) => {
+        x2 = d.clientX;
+        y2 = d.clientY;
+
+        filterFormBox.style.top = `${filterFormBox.offsetTop - (y1 - y2)}px`;
+        filterFormBox.style.left = `${filterFormBox.offsetLeft - (x1 - x2)}px`;
+    });
 }

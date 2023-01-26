@@ -140,7 +140,7 @@ body {
     border-width: 1px;
     border-color: black;
     padding: 4px;
-    cursor: pointer;
+    cursor: move;
 }
 
 #hiddensearchbox > .menubar {
