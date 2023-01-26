@@ -35,11 +35,10 @@ function displayFruitDetails(fruit)
     });
 }
 
-function displayFruitNav(fruits, filter)
-{
-    const fruitNav = document.querySelector("#navigation");
-    fruitNav.textContent = "";
+const fruitNav = document.querySelector("#navigation");
 
+function displayFruitNav(fruits, filter)
+{   
     fruits.forEach(fruit => {
         if (fruit.name.toLowerCase().match(filter) || filter === undefined)
         {
@@ -54,24 +53,52 @@ function displayFruitNav(fruits, filter)
             fruitItem.addEventListener("click", (e) => displayFruitDetails(fruit));
         }
     });
-
-    // add new fruit button
-
-    const fruitItemAdd = document.createElement("img");
-    fruitItemAdd.src = "assets/addnew.png";
-    fruitItemAdd.alt = "Add new fruit";
-    fruitItemAdd.className = "fruit";
-    fruitNav.append(fruitItemAdd);
-
-    fruitItemAdd.addEventListener("click", (e) => {
-        displayAddFruitForm();
-    });
-
 }
 
 function displayAddFruitForm()
 {
-    
+    const addFruitBox = document.querySelector("#addfruitform");
+    addFruitBox.classList.toggle("hidden");
+
+    let x1, x2, y1, y2;
+
+    addFruitBox.addEventListener("dragstart", (d) => {
+        x1 = d.clientX;
+        y1 = d.clientY;
+    });
+
+    addFruitBox.addEventListener("dragend", (d) => {
+        x2 = d.clientX;
+        y2 = d.clientY;
+
+        addFruitBox.style.top = `${addFruitBox.offsetTop - (y1 - y2)}px`;
+        addFruitBox.style.left = `${addFruitBox.offsetLeft - (x1 - x2)}px`;
+    });
+
+    const addFruitForm = document.querySelector("#add-fruit-form");
+    addFruitForm.addEventListener("submit", (e) =>
+    {
+        e.preventDefault();
+
+        const newFruit =
+        {
+            "name": "addnew",
+            "nutritions": {
+            "carbohydrates": e.target.carbs.value,
+            "protein": e.target.protein.value,
+            "fat": e.target.fat.value,
+            "calories": e.target.calories.value,
+            "sugar": e.target.sugar.value
+            }
+        }
+
+        displayFruitNav([newFruit]);
+    });
+
+    const closeFruitForm = document.querySelector("#close-btn");
+    closeFruitForm.addEventListener("click", (e) => {
+        addFruitBox.classList.add("hidden");
+    });
 }
 
 function sortObject(fruits, sortBy)
@@ -118,6 +145,14 @@ function displayFilterForm(fruits)
     moreOptions.textContent = "Sort by...";
     searchBox.append(moreOptions);
 
+    const addNew = document.createElement("button");
+    addNew.textContent = "Add...";
+    searchBox.append(addNew);
+
+    addNew.addEventListener("click", (e) => {
+        displayAddFruitForm();
+    });
+
     // define additional sorting form
     const filterFormBox = document.querySelector("#hiddensearchbox.hidden");
     const filterForm = document.createElement("form");
@@ -126,6 +161,7 @@ function displayFilterForm(fruits)
     const br2 = document.createElement("br");
     const br3 = document.createElement("br");
     const br4 = document.createElement("br");
+    const br5 = document.createElement("br");
 
     // event listener for exposing additional options
     moreOptions.addEventListener("click", (e) =>
@@ -170,12 +206,15 @@ function displayFilterForm(fruits)
     optSugar.setAttribute("value", "bySugar");
     const txtSugar = document.createTextNode("Sugar content");
 
+    const btnClose = document.createElement("button");
+    btnClose.textContent = "Close";
+
     filterForm.append(optName, txtName, br0,
                       optCarbs, txtCarbs, br1,
                       optProtein, txtProtein, br2,
                       optFat, txtFat, br3,
                       optCalories, txtCalories, br4,
-                      optSugar, txtSugar);
+                      optSugar, txtSugar, br5, btnClose);
 
     filterFormBox.append(filterForm);
 
@@ -184,15 +223,22 @@ function displayFilterForm(fruits)
     let searchValue = searchInput.value;
 
     // add event listeners
+    btnClose.addEventListener("click", (e) => {
+        e.preventDefault();
+        filterFormBox.classList.add("hidden");
+    });
+
     filterForm.addEventListener("click", (e) => {
         sortValue = document.querySelector("input[name='sortOrder']:checked").value;
         sortObject(fruits, sortValue);
+        fruitNav.textContent = "";
         displayFruitNav(fruits, searchValue);
     });
 
     searchInput.addEventListener("input", (x) => {
         sortObject(fruits, sortValue);
         searchValue = x.target.value.toLowerCase();
+        fruitNav.textContent = "";
         displayFruitNav(fruits, searchValue);
     });
 
