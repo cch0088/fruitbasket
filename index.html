@@ -16,6 +16,34 @@
       <div id="hiddensearchbox" class="hidden" draggable="true">
         <div class="menubar">Sort by:</div>
       </div>
+      <div id="addfruitform" class="hidden" draggable="true">
+        <div class="menubar">Add a fruit:</div>
+        <form id="add-fruit-form">
+          <label for="fruit-name">Fruit Name:</label><br>
+          <input type="text" name="fruit-name" placeholder="Fruit Name" required>
+          <br>
+          <label for="fruit-img">Fruit Image Link:</label><br>
+          <input type="text" name="fruit-img" placeholder="Image Url" required>
+          <br>
+          <label for="carbs">Carbohydrates:</label><br>
+          <input type="number" name="carbs" placeholder="in grams" min="0" required>
+          <br>
+          <label for="protein">Protein:</label><br>
+          <input type="number" name="protein" placeholder="in grams" min="0" required>
+          <br>
+          <label for="fat">Fat:</label><br>
+          <input type="number" name="fat" placeholder="in grams" min="0" required>
+          <br>
+          <label for="calories">Calories:</label><br>
+          <input type="number" name="calories" min="0" required>
+          <br>
+          <label for="sugar">Sugar:</label><br>
+          <input type="number" name="sugar" min="0" placeholder="in grams" required>
+          <br>
+          <input type="submit" id="add-btn" id="add-btn" value="Add Fruit">
+          <input type="button" id="close-btn" value="Close">
+        </form>
+      </div>
       <div id="navigation"></div>
       <div id="fruit">
         <img id="imgDetails" src="" alt="Display Fruit Image Here">

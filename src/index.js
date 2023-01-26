@@ -39,7 +39,7 @@ function displayFruitNav(fruits, filter)
 {
     const fruitNav = document.querySelector("#navigation");
     fruitNav.textContent = "";
-
+    
     fruits.forEach(fruit => {
         if (fruit.name.toLowerCase().match(filter) || filter === undefined)
         {
@@ -54,6 +54,7 @@ function displayFruitNav(fruits, filter)
             fruitItem.addEventListener("click", (e) => displayFruitDetails(fruit));
         }
     });
+    
 
     // add new fruit button
 
@@ -71,7 +72,48 @@ function displayFruitNav(fruits, filter)
 
 function displayAddFruitForm()
 {
-    
+    const addFruitBox = document.querySelector("#addfruitform");
+    addFruitBox.classList.toggle("hidden");
+
+    let x1, x2, y1, y2;
+
+    addFruitBox.addEventListener("dragstart", (d) => {
+        x1 = d.clientX;
+        y1 = d.clientY;
+    });
+
+    addFruitBox.addEventListener("dragend", (d) => {
+        x2 = d.clientX;
+        y2 = d.clientY;
+
+        addFruitBox.style.top = `${addFruitBox.offsetTop - (y1 - y2)}px`;
+        addFruitBox.style.left = `${addFruitBox.offsetLeft - (x1 - x2)}px`;
+    });
+
+    const addFruitForm = document.querySelector("#add-fruit-form");
+    addFruitForm.addEventListener("submit", (e) =>
+    {
+        e.preventDefault();
+
+        const newFruit =
+        {
+            "name": e.target["fruit-name"],
+            "nutritions": {
+            "carbohydrates": e.target.carbs,
+            "protein": e.target.protein,
+            "fat": e.target.fat,
+            "calories": e.target.calories,
+            "sugar": e.target.sugar
+            }
+        }
+
+        //displayFruitNav([newFruit]);
+    });
+
+    const closeFruitForm = document.querySelector("#close-btn");
+    closeFruitForm.addEventListener("click", (e) => {
+        addFruitBox.classList.add("hidden");
+    });
 }
 
 function sortObject(fruits, sortBy)
