@@ -35,11 +35,10 @@ function displayFruitDetails(fruit)
     });
 }
 
+const fruitNav = document.querySelector("#navigation");
+
 function displayFruitNav(fruits, filter)
-{
-    const fruitNav = document.querySelector("#navigation");
-    fruitNav.textContent = "";
-    
+{   
     fruits.forEach(fruit => {
         if (fruit.name.toLowerCase().match(filter) || filter === undefined)
         {
@@ -54,20 +53,6 @@ function displayFruitNav(fruits, filter)
             fruitItem.addEventListener("click", (e) => displayFruitDetails(fruit));
         }
     });
-    
-
-    // add new fruit button
-
-    const fruitItemAdd = document.createElement("img");
-    fruitItemAdd.src = "assets/addnew.png";
-    fruitItemAdd.alt = "Add new fruit";
-    fruitItemAdd.className = "fruit";
-    fruitNav.append(fruitItemAdd);
-
-    fruitItemAdd.addEventListener("click", (e) => {
-        displayAddFruitForm();
-    });
-
 }
 
 function displayAddFruitForm()
@@ -97,17 +82,18 @@ function displayAddFruitForm()
 
         const newFruit =
         {
-            "name": e.target["fruit-name"],
+            "name": "addnew",
             "nutritions": {
-            "carbohydrates": e.target.carbs,
-            "protein": e.target.protein,
-            "fat": e.target.fat,
-            "calories": e.target.calories,
-            "sugar": e.target.sugar
+            "carbohydrates": e.target.carbs.value,
+            "protein": e.target.protein.value,
+            "fat": e.target.fat.value,
+            "calories": e.target.calories.value,
+            "sugar": e.target.sugar.value
             }
         }
 
-        //displayFruitNav([newFruit]);
+        displayFruitNav([newFruit]);
+
     });
 
     const closeFruitForm = document.querySelector("#close-btn");
@@ -159,6 +145,14 @@ function displayFilterForm(fruits)
     const moreOptions = document.createElement("button");
     moreOptions.textContent = "Sort by...";
     searchBox.append(moreOptions);
+
+    const addNew = document.createElement("button");
+    addNew.textContent = "+";
+    searchBox.append(addNew);
+
+    addNew.addEventListener("click", (e) => {
+        displayAddFruitForm();
+    });
 
     // define additional sorting form
     const filterFormBox = document.querySelector("#hiddensearchbox.hidden");
@@ -229,12 +223,14 @@ function displayFilterForm(fruits)
     filterForm.addEventListener("click", (e) => {
         sortValue = document.querySelector("input[name='sortOrder']:checked").value;
         sortObject(fruits, sortValue);
+        fruitNav.textContent = "";
         displayFruitNav(fruits, searchValue);
     });
 
     searchInput.addEventListener("input", (x) => {
         sortObject(fruits, sortValue);
         searchValue = x.target.value.toLowerCase();
+        fruitNav.textContent = "";
         displayFruitNav(fruits, searchValue);
     });
 
