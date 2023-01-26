@@ -93,7 +93,6 @@ function displayAddFruitForm()
         }
 
         displayFruitNav([newFruit]);
-
     });
 
     const closeFruitForm = document.querySelector("#close-btn");
@@ -147,7 +146,7 @@ function displayFilterForm(fruits)
     searchBox.append(moreOptions);
 
     const addNew = document.createElement("button");
-    addNew.textContent = "+";
+    addNew.textContent = "Add...";
     searchBox.append(addNew);
 
     addNew.addEventListener("click", (e) => {
@@ -162,6 +161,7 @@ function displayFilterForm(fruits)
     const br2 = document.createElement("br");
     const br3 = document.createElement("br");
     const br4 = document.createElement("br");
+    const br5 = document.createElement("br");
 
     // event listener for exposing additional options
     moreOptions.addEventListener("click", (e) =>
@@ -206,12 +206,15 @@ function displayFilterForm(fruits)
     optSugar.setAttribute("value", "bySugar");
     const txtSugar = document.createTextNode("Sugar content");
 
+    const btnClose = document.createElement("button");
+    btnClose.textContent = "Close";
+
     filterForm.append(optName, txtName, br0,
                       optCarbs, txtCarbs, br1,
                       optProtein, txtProtein, br2,
                       optFat, txtFat, br3,
                       optCalories, txtCalories, br4,
-                      optSugar, txtSugar);
+                      optSugar, txtSugar, br5, btnClose);
 
     filterFormBox.append(filterForm);
 
@@ -220,6 +223,11 @@ function displayFilterForm(fruits)
     let searchValue = searchInput.value;
 
     // add event listeners
+    btnClose.addEventListener("click", (e) => {
+        e.preventDefault();
+        filterFormBox.classList.add("hidden");
+    });
+
     filterForm.addEventListener("click", (e) => {
         sortValue = document.querySelector("input[name='sortOrder']:checked").value;
         sortObject(fruits, sortValue);
