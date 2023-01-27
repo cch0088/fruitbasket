@@ -47,6 +47,7 @@ body {
 
 .fruit:hover{
     filter: brightness(0.5);
+    z-index: 3;
 }
 
 #navigation img {
@@ -60,6 +61,7 @@ body {
     background-color: white;
     padding: 4px;
     margin-right: 6px;
+    z-index: 2;
 }
 
 #details {
@@ -104,6 +106,7 @@ body {
     border-style: solid;
     border-width: 1px;
     border-color: black;
+    z-index: 2;
 }
 
 #searchbox {

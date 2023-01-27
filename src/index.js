@@ -84,8 +84,12 @@ function displayFruitNav(fruits, filter)
 
             delFruit.style.marginLeft = "-18px";
             delFruit.style.border = "none";
-            delFruit.style.background = "none";
+            delFruit.style.backgroundColor = "red";
+            delFruit.style.color = "white";
+            delFruit.style.borderRadius = "12px";
             delFruit.style.fontWeight = "bold";
+            delFruit.style.width = "20px";
+            delFruit.style.opacity = "80%";
 
             fruitNav.append(fruitItem, delFruit);
 
