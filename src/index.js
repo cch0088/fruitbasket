@@ -14,7 +14,14 @@ function displayFruitDetails(fruit)
     const contentList = fruit.nutritions;
 
     const imgDetails = document.querySelector('#imgDetails');
-    imgDetails.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+    if (fruit.image === undefined)
+    {
+        imgDetails.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+    }
+    else
+    {
+        imgDetails.src = fruit.image;
+    }
     imgDetails.alt = fruit.name;
     
     document.querySelector("#fruitName").textContent = fruit.name;
@@ -43,7 +50,14 @@ function displayFruitNav(fruits, filter)
         if (fruit.name.toLowerCase().match(filter) || filter === undefined)
         {
             const fruitItem = document.createElement("img");
-            fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+            if (fruit.image === undefined)
+            {
+                fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+            }
+            else
+            {
+                fruitItem.src = fruit.image;
+            }
             fruitItem.alt = fruit.name;
             fruitItem.className = "fruit";
 
@@ -83,6 +97,7 @@ function displayAddFruitForm()
         const newFruit =
         {
             "name": e.target["fruit-name"].value,
+            "image": e.target["fruit-img"].value,
             "nutritions": {
             "carbohydrates": e.target.carbs.value,
             "protein": e.target.protein.value,
