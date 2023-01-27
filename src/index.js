@@ -43,6 +43,23 @@ function displayFruitDetails(fruit)
     });
 }
 
+editFruitDetails();
+
+function editFruitDetails()
+{
+    const details = document.querySelector("#details");
+    const btnEdit = document.createElement("button");
+    btnEdit.textContent = "Edit Details";
+    btnEdit.style.marginTop = "10px";
+    btnEdit.style.fontWeight = "bold";
+
+    btnEdit.addEventListener("click", (e) => {
+        alert("Not yet implemented...");
+    })
+
+    details.append(btnEdit);
+}
+
 const fruitNav = document.querySelector("#navigation");
 
 function displayFruitNav(fruits, filter)
@@ -62,10 +79,18 @@ function displayFruitNav(fruits, filter)
             fruitItem.alt = fruit.name;
             fruitItem.className = "fruit";
 
-            fruitNav.append(fruitItem);
+            const delFruit = document.createElement("button");
+            delFruit.textContent = "X";
+
+            fruitNav.append(fruitItem, delFruit);
 
             // Click for Display
             fruitItem.addEventListener("click", (e) => displayFruitDetails(fruit));
+
+            delFruit.addEventListener("click", (e) => {
+                e.target.remove();
+                fruitItem.remove();
+            });
         }
     });
 }
