@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         displayFruitDetails(data[0]);
         displayFruitNav(data);
         displayFilterForm(data);
+        displayAddFruitForm();
     });
 });
 
@@ -71,8 +72,16 @@ function displayFruitNav(fruits, filter)
 
 function displayAddFruitForm()
 {
+    const searchBox = document.querySelector("#searchbox");
     const addFruitBox = document.querySelector("#addfruitform");
-    addFruitBox.classList.toggle("hidden");
+
+    const addNew = document.createElement("button");
+    addNew.textContent = "Add...";
+    searchBox.append(addNew);
+
+    addNew.addEventListener("click", (e) => {
+        addFruitBox.classList.toggle("hidden");
+    });
 
     let x1, x2, y1, y2;
 
@@ -159,14 +168,6 @@ function displayFilterForm(fruits)
     const moreOptions = document.createElement("button");
     moreOptions.textContent = "Sort by...";
     searchBox.append(moreOptions);
-
-    const addNew = document.createElement("button");
-    addNew.textContent = "Add...";
-    searchBox.append(addNew);
-
-    addNew.addEventListener("click", (e) => {
-        displayAddFruitForm();
-    });
 
     // define additional sorting form
     const filterFormBox = document.querySelector("#hiddensearchbox.hidden");
