@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         displayFruitDetails(data[0]);
         displayFruitNav(data);
         displayFilterForm(data);
+        displayAddFruitForm();
     });
 });
 
@@ -14,7 +15,14 @@ function displayFruitDetails(fruit)
     const contentList = fruit.nutritions;
 
     const imgDetails = document.querySelector('#imgDetails');
-    imgDetails.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+    if (fruit.image === undefined)
+    {
+        imgDetails.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+    }
+    else
+    {
+        imgDetails.src = fruit.image;
+    }
     imgDetails.alt = fruit.name;
     
     document.querySelector("#fruitName").textContent = fruit.name;
@@ -35,6 +43,23 @@ function displayFruitDetails(fruit)
     });
 }
 
+editFruitDetails();
+
+function editFruitDetails()
+{
+    const details = document.querySelector("#details");
+    const btnEdit = document.createElement("button");
+    btnEdit.textContent = "Edit Details";
+    btnEdit.style.marginTop = "10px";
+    btnEdit.style.fontWeight = "bold";
+
+    btnEdit.addEventListener("click", (e) => {
+        alert("Not yet implemented...");
+    })
+
+    details.append(btnEdit);
+}
+
 const fruitNav = document.querySelector("#navigation");
 
 function displayFruitNav(fruits, filter)
@@ -43,22 +68,51 @@ function displayFruitNav(fruits, filter)
         if (fruit.name.toLowerCase().match(filter) || filter === undefined)
         {
             const fruitItem = document.createElement("img");
-            fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+            if (fruit.image === undefined)
+            {
+                fruitItem.src = "assets/" + (fruit.name).toLowerCase() + ".png";
+            }
+            else
+            {
+                fruitItem.src = fruit.image;
+            }
             fruitItem.alt = fruit.name;
             fruitItem.className = "fruit";
 
-            fruitNav.append(fruitItem);
+            const delFruit = document.createElement("button");
+            delFruit.textContent = "X";
+
+            delFruit.style.marginLeft = "-18px";
+            delFruit.style.border = "none";
+            delFruit.style.background = "none";
+            delFruit.style.fontWeight = "bold";
+
+            fruitNav.append(fruitItem, delFruit);
 
             // Click for Display
             fruitItem.addEventListener("click", (e) => displayFruitDetails(fruit));
+
+            // Delete fruit button
+            delFruit.addEventListener("click", (e) => {
+                e.target.remove();
+                fruitItem.remove();
+            });
         }
     });
 }
 
 function displayAddFruitForm()
 {
+    const searchBox = document.querySelector("#searchbox");
     const addFruitBox = document.querySelector("#addfruitform");
-    addFruitBox.classList.toggle("hidden");
+
+    const addNew = document.createElement("button");
+    addNew.textContent = "Add...";
+    searchBox.append(addNew);
+
+    addNew.addEventListener("click", (e) => {
+        addFruitBox.classList.toggle("hidden");
+    });
 
     let x1, x2, y1, y2;
 
@@ -82,7 +136,8 @@ function displayAddFruitForm()
 
         const newFruit =
         {
-            "name": "addnew",
+            "name": e.target["fruit-name"].value,
+            "image": e.target["fruit-img"].value,
             "nutritions": {
             "carbohydrates": e.target.carbs.value,
             "protein": e.target.protein.value,
@@ -144,14 +199,6 @@ function displayFilterForm(fruits)
     const moreOptions = document.createElement("button");
     moreOptions.textContent = "Sort by...";
     searchBox.append(moreOptions);
-
-    const addNew = document.createElement("button");
-    addNew.textContent = "Add...";
-    searchBox.append(addNew);
-
-    addNew.addEventListener("click", (e) => {
-        displayAddFruitForm();
-    });
 
     // define additional sorting form
     const filterFormBox = document.querySelector("#hiddensearchbox.hidden");
