@@ -82,11 +82,17 @@ function displayFruitNav(fruits, filter)
             const delFruit = document.createElement("button");
             delFruit.textContent = "X";
 
+            delFruit.style.marginLeft = "-18px";
+            delFruit.style.border = "none";
+            delFruit.style.background = "none";
+            delFruit.style.fontWeight = "bold";
+
             fruitNav.append(fruitItem, delFruit);
 
             // Click for Display
             fruitItem.addEventListener("click", (e) => displayFruitDetails(fruit));
 
+            // Delete fruit button
             delFruit.addEventListener("click", (e) => {
                 e.target.remove();
                 fruitItem.remove();
