@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", (e) => {
     // Fetch data downloaded from https://fruityvice.com/api/fruit/all
-    fetch("http://localhost:3000/fruits")
+    fetch("https://my-json-server.typicode.com/cch0088/fruitbasket/fruits")
     .then((resp) => resp.json())
     .then((data) => {
         displayFruitDetails(data[0]);
