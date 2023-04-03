@@ -117,7 +117,33 @@
 		"calories": 60,
 		"sugar": 8
 	    }
-	},  {
+	}, {
+	    "genus": "Durio",
+	    "name": "Durian",
+	    "id": 60,
+	    "family": "Malvaceae",
+	    "order": "Malvales",
+	    "nutritions": {
+		"carbohydrates": 27.1,
+		"protein": 1.5,
+		"fat": 5.3,
+		"calories": 147,
+		"sugar": 6.75
+	    }
+	}, {
+	    "genus": "Sellowiana",
+	    "name": "Feijoa",
+	    "id": 76,
+	    "family": "Myrtaceae",
+	    "order": "Myrtoideae",
+	    "nutritions": {
+		"carbohydrates": 8,
+		"protein": 0.6,
+		"fat": 0.4,
+		"calories": 44,
+		"sugar": 3
+	    }
+	}, {
 	    "genus": "Ficus",
 	    "name": "Fig",
 	    "id": 68,
@@ -130,7 +156,20 @@
 		"calories": 74,
 		"sugar": 16
 	    }
-	},  {
+	}, {
+	    "genus": "Ribes",
+	    "name": "Gooseberry",
+	    "id": 69,
+	    "family": "Grossulariaceae",
+	    "order": "Saxifragales",
+	    "nutritions": {
+		"carbohydrates": 10,
+		"protein": 0.9,
+		"fat": 0.6,
+		"calories": 44,
+		"sugar": 0
+	    }
+	}, {
 	    "genus": "Vitis",
 	    "name": "Grape",
 	    "id": 81,
@@ -143,7 +182,20 @@
 		"calories": 69,
 		"sugar": 16
 	    }
-	},  {
+	}, {
+	    "genus": "Malus",
+	    "name": "GreenApple",
+	    "id": 72,
+	    "family": "Rosaceae",
+	    "order": "Rosales",
+	    "nutritions": {
+		"carbohydrates": 3.1,
+		"protein": 0.4,
+		"fat": 0.1,
+		"calories": 21,
+		"sugar": 6.4
+	    }
+	}, {
 	    "genus": "Psidium",
 	    "name": "Guava",
 	    "id": 37,
@@ -169,7 +221,20 @@
 		"calories": 61,
 		"sugar": 9
 	    }
-	},  {
+	}, {
+	    "genus": "Actinidia",
+	    "name": "Kiwifruit",
+	    "id": 85,
+	    "family": "Actinidiaceae",
+	    "order": "Ericales",
+	    "nutritions": {
+		"carbohydrates": 14.6,
+		"protein": 1.14,
+		"fat": 0.5,
+		"calories": 61,
+		"sugar": 8.9
+	    }
+	}, {
 	    "genus": "Citrus",
 	    "name": "Lemon",
 	    "id": 26,
@@ -182,7 +247,46 @@
 		"calories": 29,
 		"sugar": 2.5
 	    }
-	},  {
+	}, {
+	    "genus": "Citrus",
+	    "name": "Lime",
+	    "id": 44,
+	    "family": "Rutaceae",
+	    "order": "Sapindales",
+	    "nutritions": {
+		"carbohydrates": 8.4,
+		"protein": 0.3,
+		"fat": 0.1,
+		"calories": 25,
+		"sugar": 1.7
+	    }
+	}, {
+	    "genus": "Vaccinium",
+	    "name": "Lingonberry",
+	    "id": 65,
+	    "family": "Ericaceae",
+	    "order": "Ericales",
+	    "nutritions": {
+		"carbohydrates": 11.3,
+		"protein": 0.75,
+		"fat": 0.34,
+		"calories": 50,
+		"sugar": 5.74
+	    }
+	}, {
+	    "genus": "Litchi",
+	    "name": "Lychee",
+	    "id": 67,
+	    "family": "Sapindaceae",
+	    "order": "Sapindales",
+	    "nutritions": {
+		"carbohydrates": 17,
+		"protein": 0.8,
+		"fat": 0.44,
+		"calories": 66,
+		"sugar": 15
+	    }
+	}, {
 	    "genus": "Mangifera",
 	    "name": "Mango",
 	    "id": 27,
@@ -247,7 +351,20 @@
 		"calories": 43,
 		"sugar": 1
 	    }
-	},  {
+	}, {
+	    "genus": "Passiflora",
+	    "name": "Passionfruit",
+	    "id": 70,
+	    "family": "Passifloraceae",
+	    "order": "Malpighiales",
+	    "nutritions": {
+		"carbohydrates": 22.4,
+		"protein": 2.2,
+		"fat": 0.7,
+		"calories": 97,
+		"sugar": 11.2
+	    }
+	}, {
 	    "genus": "Prunus",
 	    "name": "Peach",
 	    "id": 86,
@@ -299,7 +416,20 @@
 		"calories": 50,
 		"sugar": 9.85
 	    }
-	},  {
+	}, {
+	    "genus": "Cactaceae",
+	    "name": "Pitahaya",
+	    "id": 78,
+	    "family": "Cactaceae",
+	    "order": "Caryophyllales",
+	    "nutritions": {
+		"carbohydrates": 7,
+		"protein": 1,
+		"fat": 0.4,
+		"calories": 36,
+		"sugar": 3
+	    }
+	}, {
 	    "genus": "Prunus",
 	    "name": "Plum",
 	    "id": 71,
